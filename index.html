@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vismaya The Band | Official Website</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #ff2e63;
+            --primary-hover: #e02255;
+            --bg-dark: #0a0a0a;
+            --bg-card: #151515;
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 15px 5%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            height: 45px;
+            border-radius: 4px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 46, 99, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -2;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(10,10,10,0.4) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+            animation: fadeUp 1.5s ease;
+            padding: 0 20px;
+        }
+
+        .hero-logo {
+            width: clamp(200px, 40vw, 350px);
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        /* --- GENERAL SECTIONS --- */
+        section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: white;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* --- MEMBERS GRID --- */
+        .members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .member {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 46, 99, 0.15);
+            border-color: rgba(255, 46, 99, 0.3);
+        }
+
+        .member-img {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Keeps images perfectly square regardless of upload size */
+            overflow: hidden;
+        }
+
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .member:hover .member-img img {
+            transform: scale(1.08);
+        }
+
+        .member-info {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .member-info p {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* --- EVENTS / TOUR --- */
+        .tour-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .event-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            padding: 25px 40px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: scale(1.02);
+            background: #1a1a1a;
+        }
+
+        .event-date {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .event-date span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .event-date h4 {
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .event-details {
+            flex-grow: 1;
+            padding: 0 30px;
+        }
+
+        .event-details h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .event-details p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- CONTACT --- */
+        .contact-wrap {
+            text-align: center;
+            background: var(--bg-card);
+            padding: 60px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-wrap h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-wrap p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #000;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- FLOATING WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #20b858;
+        }
+
+        /* --- POPUP MODAL --- */
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-content {
+            background: var(--bg-card);
+            margin: 5% auto;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .popup-img-wrapper {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+
+        .popup-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .popup-info {
+            padding: 30px 20px;
+        }
+
+        .popup-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .popup-info p {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        /* --- ANIMATIONS --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* Can be replaced with a hamburger menu later */
+            }
+            .event-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 30px 20px;
+            }
+            .event-details {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <a href="#home"><img src="Images/logo.jpeg" class="logo" alt="Vismaya The Band Logo"></a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#members">Members</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="hero1.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <img src="Images/logo.jpeg" class="hero-logo" alt="Vismaya The Band">
+            <p>Every Genre • One Vibe</p>
+            <a href="https://wa.me/919606777066" target="_blank" class="btn">Book Us Now</a>
+        </div>
+    </header>
+
+    <section id="members" class="fade-in">
+        <h2 class="section-title">Meet The Band</h2>
+        <div class="members">
+            
+            <div class="member" onclick="openPopup('Sudheep', 'Male Vocalist / Team Head', 'Images/Sudheep.JPG', 'https://www.instagram.com/_gowdru_huduga_sudeep/')">
+                <div class="member-img"><img src="Images/Sudheep.JPG" alt="Sudheep"></div>
+                <div class="member-info">
+                    <h3>Sudheep</h3>
+                    <p>Male Vocalist / Team Head</p>
+                </div>
+            </div>
+
+            <div class="member" onclick="openPopup('Laya', 'Female Vocalist', 'Images/Laya.JPG', 'https://www.instagram.com/layaraghurama/')">
+                <div class="member-img"><img src="Images/Laya.JPG" alt="Laya"></div>
+                <div class="member-info">
+                    <h3>Laya</h3>
+                    <p>Female Vocalist</p>
+                </div>
+            </div>
+
+            <div class="member" onclick="openPopup('Nisha', 'Female Vocalist', 'Images/Nisha.JPG', 'https://www.instagram.com/nishu_vijaykumar/')">
+                <div class="member-img"><img src="Images/Nisha.JPG" alt="Nisha"></div>
+                <div class="member-info">
+                    <h3>Nisha</h3>
+                    <p>Female Vocalist</p>
+                </div>
+            </div>
+
+            <div class="member" onclick="openPopup('Mayur', 'Guitarist', 'Images/Mayur.JPG', 'https://www.instagram.com/mayu.143661/')">
+                <div class="member-img"><img src="Images/Mayur.JPG" alt="Mayur"></div>
+                <div class="member-info">
+                    <h3>Mayur</h3>
+                    <p>Guitarist</p>
+                </div>
+            </div>
+
+            <div class="member" onclick="openPopup('Karthik', 'Drummer', 'Images/Karthik.JPG', 'https://www.instagram.com/_r.karthik_kashyap/')">
+                <div class="member-img"><img src="Images/Karthik.JPG" alt="Karthik"></div>
+                <div class="member-info">
+                    <h3>Karthik</h3>
+                    <p>Drummer</p>
+                </div>
+            </div>
+
+            <div class="member" onclick="openPopup('Agnivesh', 'Percussionist', 'Images/Agni.JPG', 'https://www.instagram.com/agniveshnn/')">
+                <div class="member-img"><img src="Images/Agni.JPG" alt="Agnivesh"></div>
+                <div class="member-info">
+                    <h3>Agnivesh</h3>
+                    <p>Percussionist</p>
+                </div>
+            </div>
+
+            <div class="member" onclick="openPopup('Sandhya', 'Manager / Co-ordinator', 'https://via.placeholder.com/600', 'https://www.instagram.com/the_eternus/')">
+                <div class="member-img"><img src="https://via.placeholder.com/600" alt="Sandhya"></div>
+                <div class="member-info">
+                    <h3>Sandhya</h3>
+                    <p>Manager / Co-ordinator</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="events" class="fade-in">
+        <h2 class="section-title">Upcoming Shows</h2>
+        
+        <div class="coming-soon-wrap" style="text-align: center; background: var(--bg-card); padding: 60px 20px; border-radius: 15px; border: 1px dashed rgba(255, 46, 99, 0.4);">
+            <i class="fas fa-calendar-times" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px; opacity: 0.8;"></i>
+            <h3 style="font-size: 1.8rem; margin-bottom: 15px; font-weight: 700;">Dates Dropping Soon</h3>
+            <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 500px; margin: 0 auto 25px auto;">
+                We're currently lining up our next gigs. Follow us on Instagram or drop us a message to be the first to know when we hit the stage!
+            </p>
+            <a href="https://www.instagram.com/vismayatheband/" target="_blank" class="btn btn-outline">
+                <i class="fab fa-instagram"></i> Stay Updated
+            </a>
+        </div>
+
+    </section>
+
+    <section id="contact" class="fade-in">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-wrap">
+            <h3>Ready to feel the Vismaya vibe?</h3>
+            <p>Book us for corporate events, weddings, club gigs, and private parties.</p>
+            <a href="https://wa.me/919606777066" class="btn btn-outline" target="_blank">Chat on WhatsApp</a>
+            <a href="tel:+919606777066" class="btn btn-outline" style="margin-left:10px;"><i class="fas fa-phone"></i> Call Now</a>
+            
+            <div class="social-links">
+                <a href="tel:+919606777066" target="_blank"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/919606777066" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/vismayatheband/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@VismayaTheBand" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vismaya The Band. All Rights Reserved.</p>
+        <p>Designed & Developed by <a href="D:\iPortfolio-1.0.0\index.html" target="_blank">Agnivesh N N</a></p>
+    </footer>
+
+    <a href="https://wa.me/919606777066" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="popup" class="popup" onclick="closePopup(event)">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <div class="popup-img-wrapper">
+                <img id="popup-img" src="" alt="Band Member">
+            </div>
+            <div class="popup-info">
+                <h2 id="popup-name">Name</h2>
+                <p id="popup-role">Role</p>
+                <a id="popup-insta" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-instagram"></i> Follow
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener("scroll", () => {
+            const nav = document.getElementById("navbar");
+            if(window.scrollY > 50) {
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        });
+
+        // Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target); // Stop observing once it has faded in
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Popup Logic
+        function openPopup(name, role, img, insta) {
+            const popup = document.getElementById("popup");
+            document.getElementById("popup-name").innerText = name;
+            document.getElementById("popup-role").innerText = role;
+            document.getElementById("popup-img").src = img;
+            document.getElementById("popup-insta").href = insta;
+            
+            popup.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent background scrolling
+        }
+
+        function closePopup(e) {
+            document.getElementById("popup").style.display = "none";
+            document.body.style.overflow = "auto"; // Restore background scrolling
+        }
+    </script>
+
+</body>
+</html>
