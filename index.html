@@ -203,64 +203,6 @@
             border-radius: 2px;
         }
 
-        /* --- MEMBERS GRID --- */
-        .members {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .member {
-            background: var(--bg-card);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 46, 99, 0.15);
-            border-color: rgba(255, 46, 99, 0.3);
-        }
-
-        .member-img {
-            width: 100%;
-            aspect-ratio: 1 / 1; /* Keeps images perfectly square regardless of upload size */
-            overflow: hidden;
-        }
-
-        .member-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .member:hover .member-img img {
-            transform: scale(1.08);
-        }
-
-        .member-info {
-            padding: 25px 20px;
-            text-align: center;
-        }
-
-        .member-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        .member-info p {
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
         /* --- EVENTS / TOUR --- */
         .tour-list {
             display: flex;
@@ -387,95 +329,7 @@
             transform: scale(1.1);
             background: #20b858;
         }
-
-        /* --- POPUP MODAL --- */
-        .popup {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(5px);
-        }
-
-        .popup-content {
-            background: var(--bg-card);
-            margin: 5% auto;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 20px;
-            overflow: hidden;
-            text-align: center;
-            position: relative;
-            animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            color: white;
-            cursor: pointer;
-            z-index: 2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .popup-img-wrapper {
-            width: 100%;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-        }
-
-        .popup-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .popup-info {
-            padding: 30px 20px;
-        }
-
-        .popup-info h2 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-
-        .popup-info p {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-
-        /* --- ANIMATIONS --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.9) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
+        
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             nav ul {
@@ -500,7 +354,7 @@
         <a href="#home"><img src="logo.jpeg" class="logo" alt="Vismaya The Band Logo"></a>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#members">Members</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#events">Tour</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -519,66 +373,24 @@
         </div>
     </header>
 
-    <section id="members" class="fade-in">
-        <h2 class="section-title">Meet The Band</h2>
-        <div class="members">
-            
-            <div class="member" onclick="openPopup('Sudheep', 'Male Vocalist / Team Head', 'Sudheep.JPG', 'https://www.instagram.com/_gowdru_huduga_sudeep/')">
-                <div class="member-img"><img src="Sudheep.JPG" alt="Sudheep"></div>
-                <div class="member-info">
-                    <h3>Sudheep</h3>
-                    <p>Male Vocalist / Team Head</p>
-                </div>
-            </div>
+    <section id="about" class="fade-in">
+        <h2 class="section-title">About Vismaya</h2>
 
-            <div class="member" onclick="openPopup('Laya', 'Female Vocalist', 'Laya.JPG', 'https://www.instagram.com/layaraghurama/')">
-                <div class="member-img"><img src="Laya.JPG" alt="Laya"></div>
-                <div class="member-info">
-                    <h3>Laya</h3>
-                    <p>Female Vocalist</p>
-                </div>
-            </div>
+        <div class="contact-wrap">
+            <h3>Creating Unforgettable Musical Experiences</h3>
 
-            <div class="member" onclick="openPopup('Nisha', 'Female Vocalist', 'Nisha.JPG', 'https://www.instagram.com/nishu_vijaykumar/')">
-                <div class="member-img"><img src="Nisha.JPG" alt="Nisha"></div>
-                <div class="member-info">
-                    <h3>Nisha</h3>
-                    <p>Female Vocalist</p>
-                </div>
-            </div>
+            <p style="max-width:900px;margin:auto;line-height:1.9;">
+            Vismaya The Band delivers energetic live performances for weddings,
+            corporate events, cultural festivals, private parties, and special occasions.
+            Our music blends multiple genres and creates unforgettable experiences
+            for every audience.
+            </p>
 
-            <div class="member" onclick="openPopup('Mayur', 'Guitarist', 'Mayur.JPG', 'https://www.instagram.com/mayu.143661/')">
-                <div class="member-img"><img src="Mayur.JPG" alt="Mayur"></div>
-                <div class="member-info">
-                    <h3>Mayur</h3>
-                    <p>Guitarist</p>
-                </div>
-            </div>
+            <br>
 
-            <div class="member" onclick="openPopup('Karthik', 'Drummer', 'Karthik.JPG', 'https://www.instagram.com/_r.karthik_kashyap/')">
-                <div class="member-img"><img src="Karthik.JPG" alt="Karthik"></div>
-                <div class="member-info">
-                    <h3>Karthik</h3>
-                    <p>Drummer</p>
-                </div>
-            </div>
-
-            <div class="member" onclick="openPopup('Agnivesh', 'Percussionist', 'Agni.jpg', 'https://www.instagram.com/agniveshnn/')">
-                <div class="member-img"><img src="Agni.jpg" alt="Agnivesh"></div>
-                <div class="member-info">
-                    <h3>Agnivesh</h3>
-                    <p>Percussionist</p>
-                </div>
-            </div>
-
-            <div class="member" onclick="openPopup('Sandhya', 'Manager / Co-ordinator', 'https://via.placeholder.com/600', 'https://www.instagram.com/the_eternus/')">
-                <div class="member-img"><img src="https://via.placeholder.com/600" alt="Sandhya"></div>
-                <div class="member-info">
-                    <h3>Sandhya</h3>
-                    <p>Manager</p>
-                </div>
-            </div>
-
+            <a href="https://wa.me/919606777066" target="_blank" class="btn">
+            Book Vismaya
+            </a>
         </div>
     </section>
 
@@ -624,22 +436,6 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <div id="popup" class="popup" onclick="closePopup(event)">
-        <div class="popup-content" onclick="event.stopPropagation()">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <div class="popup-img-wrapper">
-                <img id="popup-img" src="" alt="Band Member">
-            </div>
-            <div class="popup-info">
-                <h2 id="popup-name">Name</h2>
-                <p id="popup-role">Role</p>
-                <a id="popup-insta" target="_blank" class="btn btn-outline">
-                    <i class="fab fa-instagram"></i> Follow
-                </a>
-            </div>
-        </div>
-    </div>
-
     <script>
         // Navbar Scroll Effect
         window.addEventListener("scroll", () => {
@@ -667,23 +463,6 @@
         }, observerOptions);
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Popup Logic
-        function openPopup(name, role, img, insta) {
-            const popup = document.getElementById("popup");
-            document.getElementById("popup-name").innerText = name;
-            document.getElementById("popup-role").innerText = role;
-            document.getElementById("popup-img").src = img;
-            document.getElementById("popup-insta").href = insta;
-            
-            popup.style.display = "block";
-            document.body.style.overflow = "hidden"; // Prevent background scrolling
-        }
-
-        function closePopup(e) {
-            document.getElementById("popup").style.display = "none";
-            document.body.style.overflow = "auto"; // Restore background scrolling
-        }
     </script>
 
 </body>
